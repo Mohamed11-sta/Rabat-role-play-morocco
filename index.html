@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rabat Role Play</title>
+<style>
+:root{
+  --red:#c8102e;
+  --green:#006233;
+  --gold:#d8ad55;
+  --gold2:#f4d98b;
+  --ink:#0b1017;
+  --navy:#101923;
+  --paper:#f4f1e9;
+  --muted:#68717d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--paper);color:var(--ink)}
+a{text-decoration:none;color:inherit}
+.topbar{
+  background:#080c11;color:#fff;padding:10px 6%;display:flex;justify-content:space-between;
+  align-items:center;font-size:13px;letter-spacing:.4px;border-bottom:1px solid rgba(216,173,85,.3)
+}
+header{
+  position:sticky;top:0;z-index:10;background:rgba(11,16,23,.96);color:#fff;
+  padding:16px 6%;display:flex;align-items:center;justify-content:space-between;gap:25px;
+  border-bottom:1px solid rgba(216,173,85,.35);backdrop-filter:blur(10px)
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:46px;height:46px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:23px}
+.brand-text strong{display:block;letter-spacing:2px;font-size:16px}
+.brand-text span{font-size:11px;color:var(--gold2);letter-spacing:2px}
+nav{display:flex;gap:24px;font-size:14px;font-weight:700}
+nav a:hover{color:var(--gold2)}
+.hero{
+  min-height:650px;display:grid;place-items:center;text-align:center;color:#fff;padding:70px 6%;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(200,16,46,.20),transparent 35%),
+    linear-gradient(135deg,#091018,#17222f 55%,#0b1118);
+  position:relative;overflow:hidden
+}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(216,173,85,.22);transform:rotate(45deg)}
+.hero:before{width:480px;height:480px}
+.hero:after{width:680px;height:680px}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.kicker{color:var(--gold2);font-weight:800;letter-spacing:4px;font-size:12px}
+h1{font-family:Georgia,serif;font-size:clamp(45px,8vw,86px);margin:18px 0 10px}
+.hero p{max-width:720px;margin:0 auto 28px;color:#dbe2e8;font-size:18px;line-height:1.7}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;border:1px solid var(--gold);background:var(--red);color:#fff;padding:13px 22px;border-radius:8px;font-weight:800;cursor:pointer}
+.btn.alt{background:transparent}
+.btn:hover{transform:translateY(-2px)}
+.section{padding:80px 6%}
+.section-head{text-align:center;max-width:800px;margin:0 auto 40px}
+.section-head .eyebrow{color:var(--red);font-weight:900;letter-spacing:3px;font-size:11px}
+.section-head h2{font-family:Georgia,serif;font-size:42px;margin:10px 0}
+.section-head p{color:var(--muted);line-height:1.7}
+.flag-frame{
+  max-width:900px;margin:0 auto 65px;padding:14px;
+  background:linear-gradient(135deg,#7d5a22,var(--gold2),#8e6829,var(--gold2),#6f4c1b);
+  border-radius:22px;box-shadow:0 20px 55px rgba(0,0,0,.18)
+}
+.flag-inner{
+  background:#bd1e2d;min-height:270px;border:5px solid #171717;border-radius:13px;
+  display:grid;place-items:center;position:relative;overflow:hidden
+}
+.flag-inner:before{
+  content:"";width:130px;height:130px;border:5px solid #006233;
+  transform:rotate(36deg) scale(.72);position:absolute
+}
+.flag-inner:after{
+  content:"★";position:absolute;color:#006233;font-size:110px;line-height:1;
+  text-shadow:0 0 0 #006233
+}
+.flag-title{position:absolute;bottom:22px;color:#fff;font-family:Georgia,serif;font-size:22px;font-weight:700;letter-spacing:3px;text-shadow:0 2px 5px #000}
+.departments{background:#111820;color:#fff}
+.departments .section-head p{color:#aeb9c5}
+.cards{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{
+  background:linear-gradient(180deg,#1a2530,#101820);border:1px solid rgba(216,173,85,.28);
+  border-radius:18px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,.25)
+}
+.logo-box{height:250px;display:grid;place-items:center;background:#05080c;padding:22px;border-bottom:1px solid rgba(216,173,85,.25)}
+.logo-box img{max-width:100%;max-height:205px;object-fit:contain;filter:drop-shadow(0 8px 15px rgba(0,0,0,.5))}
+.card-body{padding:22px}
+.card h3{margin:0 0 7px;font-family:Georgia,serif;font-size:23px}
+.card p{color:#b9c3cd;line-height:1.55;min-height:72px}
+.status{display:inline-block;font-size:11px;font-weight:900;letter-spacing:1px;padding:6px 9px;border-radius:20px;background:#123b29;color:#7ee1aa}
+.status.soon{background:#493b12;color:#f2d77e}
+.status.closed{background:#491a22;color:#ff9eab}
+.card .btn{margin-top:10px;width:100%;text-align:center}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1000px;margin:auto}
+.step{padding:25px;background:#fff;border:1px solid #ded7c8;border-radius:15px}
+.step b{color:var(--red)}
+.step p{color:var(--muted);line-height:1.5}
+.discord{
+  max-width:900px;margin:auto;padding:45px;border-radius:22px;text-align:center;color:#fff;
+  background:linear-gradient(135deg,#5865f2,#3f4ab6);box-shadow:0 20px 50px rgba(63,74,182,.25)
+}
+.discord h2{font-size:34px;margin-top:0}
+.discord p{color:#e9eaff;line-height:1.6}
+.discord .btn{background:#fff;color:#27318d;border-color:#fff}
+footer{background:#080c11;color:#aeb7c1;padding:35px 6%;text-align:center;border-top:1px solid rgba(216,173,85,.3)}
+footer strong{color:#fff}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:30;padding:20px;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:18px;width:min(560px,100%);padding:28px;position:relative}
+.close{position:absolute;right:18px;top:10px;font-size:30px;cursor:pointer}
+.modal-box input,.modal-box textarea,.modal-box select{width:100%;padding:12px;margin:6px 0 14px;border:1px solid #ccd1d7;border-radius:9px}
+.note{font-size:12px;color:#737b84;line-height:1.5}
+@media(max-width:700px){
+  nav{display:none}.topbar{display:none}.section{padding:60px 5%}
+  .flag-inner{min-height:210px}.flag-inner:after{font-size:85px}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     EASY EDIT AREA
+     Change the text, department names, descriptions and statuses.
+     Keep the image filenames in the assets folder unchanged unless
+     you also update them in the HTML below.
+========================================================= -->
+
+<div class="topbar">
+  <span>🇲🇦 RABAT ROLE PLAY</span>
+  <span>Fictional Roblox Community</span>
+</div>
+
+<header>
+  <a class="brand" href="#">
+    <div class="brand-mark">🇲🇦</div>
+    <div class="brand-text">
+      <strong>RABAT ROLE PLAY</strong>
+      <span>COMMUNITY PORTAL</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#departments">Departments</a>
+    <a href="#process">How It Works</a>
+    <a href="#discord">Discord</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="kicker">WELCOME TO</div>
+    <h1>Rabat Role Play</h1>
+    <p>
+      Enter a professional Moroccan-inspired Roblox roleplay community.
+      Discover our departments, recruitment opportunities and community information.
+    </p>
+    <div class="buttons">
+      <a class="btn" href="#departments">Explore Departments</a>
+      <a class="btn alt" href="https://discord.gg/CQDSGbFB6" target="_blank">Join Our Discord</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-head">
+    <div class="eyebrow">OUR COMMUNITY</div>
+    <h2>Morocco, represented in RP.</h2>
+    <p>
+      A dedicated roleplay environment inspired by Moroccan institutions,
+      built for Roblox players who enjoy structured departments, training and events.
+    </p>
+  </div>
+
+  <div class="flag-frame">
+    <div class="flag-inner">
+      <div class="flag-title">RABAT ROLE PLAY</div>
+    </div>
+  </div>
+</section>
+
+<section class="section departments" id="departments">
+  <div class="section-head">
+    <div class="eyebrow">OUR DEPARTMENTS</div>
+    <h2>Choose Your Department</h2>
+    <p>Explore the departments available in the Rabat Role Play community.</p>
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="logo-box"><img src="assets/gendarmerie-royale.png" alt="Gendarmerie Royale"></div>
+      <div class="card-body">
+        <h3>Gendarmerie Royale</h3>
+        <span class="status">RECRUITMENT OPEN</span>
+        <p>Join the Gendarmerie Royale department and participate in structured RP operations and training.</p>
+        <button class="btn" onclick="openApply('Gendarmerie Royale')">Apply</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="logo-box"><img src="assets/dgsn.png" alt="DGSN"></div>
+      <div class="card-body">
+        <h3>DGSN</h3>
+        <span class="status soon">COMING SOON</span>
+        <p>Discover the DGSN department. Recruitment information will be announced by the community.</p>
+        <button class="btn" onclick="showInfo('DGSN recruitment is coming soon.')">More Info</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="logo-box"><img src="assets/forces-auxiliaires.png" alt="Forces Auxiliaires"></div>
+      <div class="card-body">
+        <h3>Forces Auxiliaires</h3>
+        <span class="status closed">RECRUITMENT CLOSED</span>
+        <p>This department is currently closed for recruitment. Check the community announcements for updates.</p>
+        <button class="btn" onclick="showInfo('Forces Auxiliaires recruitment is currently closed.')">More Info</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="logo-box"><img src="assets/garde-royale.png" alt="Garde Royale"></div>
+      <div class="card-body">
+        <h3>Garde Royale</h3>
+        <span class="status">AVAILABLE</span>
+        <p>Take part in ceremonial, protective and palace-focused roleplay within the community.</p>
+        <button class="btn" onclick="openApply('Garde Royale')">Apply</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="logo-box"><img src="assets/rabat-clinical-centre.png" alt="Rabat Clinical Centre"></div>
+      <div class="card-body">
+        <h3>Rabat Clinical Centre</h3>
+        <span class="status">AVAILABLE</span>
+        <p>Join the medical roleplay department and support players during community events and scenarios.</p>
+        <button class="btn" onclick="openApply('Rabat Clinical Centre')">Apply</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="section-head">
+    <div class="eyebrow">RECRUITMENT</div>
+    <h2>How It Works</h2>
+    <p>A simple community recruitment process.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><b>01 — Apply</b><p>Submit your RP application when recruitment is open.</p></div>
+    <div class="step"><b>02 — Review</b><p>Recruitment staff review your application and information.</p></div>
+    <div class="step"><b>03 — Assessment</b><p>Complete any interview, training or assessment required by the department.</p></div>
+    <div class="step"><b>04 — Join</b><p>If accepted, follow the department's onboarding instructions.</p></div>
+  </div>
+</section>
+
+<section class="section" id="discord">
+  <div class="discord">
+    <h2>Join the Rabat Role Play Discord</h2>
+    <p>Get recruitment announcements, community updates, events and department information.</p>
+    <a class="btn" href="https://discord.gg/CQDSGbFB6" target="_blank">Join Discord Server</a>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Rabat Role Play</strong> — All Rights Reserved</p>
+  <p>Created by <strong>nighgriff</strong> &amp; <strong>AMIGOS555T</strong></p>
+  <p class="note">This website is for a fictional Roblox roleplay community and is not an official Moroccan government website or public-authority portal.</p>
+</footer>
+
+<div class="modal" id="applyModal">
+  <div class="modal-box">
+    <span class="close" onclick="closeApply()">×</span>
+    <h2 id="modalTitle">Application</h2>
+    <form onsubmit="submitApplication(event)">
+      <label>Roblox Username</label>
+      <input id="roblox" required placeholder="Your Roblox username">
+      <label>Discord Username</label>
+      <input id="discordName" required placeholder="Your Discord username">
+      <label>Why do you want to join?</label>
+      <textarea id="reason" rows="5" required placeholder="Write your answer..."></textarea>
+      <button class="btn" type="submit">Submit Application</button>
+      <p class="note">This form is ready for later Discord/backend integration. The public page does not expose a Discord webhook.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+let selectedDepartment = "";
+
+function openApply(department){
+  selectedDepartment = department;
+  document.getElementById("modalTitle").textContent = department + " — Application";
+  document.getElementById("applyModal").style.display = "flex";
+}
+function closeApply(){
+  document.getElementById("applyModal").style.display = "none";
+}
+function showInfo(message){
+  alert(message);
+}
+function submitApplication(event){
+  event.preventDefault();
+  alert("Application prepared for " + selectedDepartment + ".\\n\\nDiscord submission can be connected securely later.");
+  event.target.reset();
+  closeApply();
+}
+window.addEventListener("click", function(event){
+  if(event.target === document.getElementById("applyModal")) closeApply();
+});
+</script>
+</body>
+</html>
